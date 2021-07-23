@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import RNFS from "react-native-fs";
 import EditScreen from "./CameraScreen";
-import { AppRegistry, StyleSheet, View, Button, ActivityIndicator } from "react-native";
+import { AppRegistry, StyleSheet, View, Button, ActivityIndicator, TouchableOpacity, Text} from "react-native";
 import RNDocumentScanner from "react-native-document-scanner";
 
 export default class MainScreen extends Component {
@@ -65,44 +65,16 @@ export default class MainScreen extends Component {
             }}
           />
 
-          {/* Button to scan document
-          <Button
-            disabled={!isCropping}
-            onPress={this._handlePressCrop}
-            title="Validate"
-            color="#0082CA"
-          />
-
-        <Button
-            disabled={!isCropping}
-            onPress={this._handlePressCrop}
-            title="Import Document"
-            color="#0082CA"
-          /> */}
-
-<View style={styles.buttonStyleContainer}>
-    <View style={{flex: 1, borderWidth: 1}}>
-    <Button
-             title={"Scan"}
-              color="#841584"
-              onPress={this._handlePressCrop}
-            />
-    </View>
-    <View style={{flex: 1, borderWidth: 1}}>
-    <Button
-                 title={"Upload"}
-             color="#841584"
-           />
-
-    </View>
-    <View style={{flex: 1, borderWidth: 1}}>
-    <Button
-                 title={"User"}
-             color="#841584"
-           />
-
-    </View>
-
+         <View style={styles.buttonStyleContainer} elevation={18}>
+         <TouchableOpacity onPress={this._handlePressCrop} style={{flex: 1, height: 40, marginTop: 10 }}>
+    <Text style={{textAlign: "center"}}>My button</Text>
+</TouchableOpacity>
+<TouchableOpacity style={{flex: 1, height: 40, marginTop: 10 }}>
+    <Text style={{textAlign: "center"}}>My button</Text>
+</TouchableOpacity>
+<TouchableOpacity style={{flex: 1, height: 40, marginTop: 10 }}>
+    <Text style={{textAlign: "center"}}>My button</Text>
+</TouchableOpacity>
          </View>
 
           {/* Loading during capture */}
@@ -130,8 +102,14 @@ const styles = StyleSheet.create({
   },
   buttonStyleContainer: {
     flexDirection: 'row',
-    borderRadius: 5,
-    backgroundColor: '#841584'
+    backgroundColor: '#841584',
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 9,
+},
+shadowOpacity: 0.48,
+shadowRadius: 11.95,
    },
   loading: {
     position: "absolute",

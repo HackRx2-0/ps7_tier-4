@@ -149,11 +149,11 @@ export default class CameraScreen extends Component {
                 <TouchableOpacity
                   onPress={() => this.proceedWithContrastandBrightnessMethod()}
                 >
-                  <Text style={styles.photoPreviewUsePhotoText}>Contrast</Text>
+                  <Text style={styles.photoPreviewUsePhotoText}>🌓 Contrast</Text>
                 </TouchableOpacity>
               </View>
 
-              <View>
+              {/* <View>
                 <TouchableOpacity
                   onPress={() => this.proceedWithContrastandBrightnessMethod()}
                 >
@@ -161,26 +161,21 @@ export default class CameraScreen extends Component {
                     Brightness
                   </Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
 
               <View>
                 <TouchableOpacity onPress={() => this.proceedWithSkew()}>
-                  <Text style={styles.photoPreviewUsePhotoText}>Skew Tilt</Text>
+                  <Text style={styles.photoPreviewUsePhotoText}>🔄 Rotate</Text>
                 </TouchableOpacity>
               </View>
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.photoPreviewUsePhotoText}>Upload</Text>
+                  <Text style={styles.photoPreviewUsePhotoText}>⏪ Undo</Text>
                 </TouchableOpacity>
               </View>
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.photoPreviewUsePhotoText}>Undo</Text>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <Text style={styles.photoPreviewUsePhotoText}>Redo</Text>
+                  <Text style={styles.photoPreviewUsePhotoText}>⬆️ Upload</Text>
                 </TouchableOpacity>
               </View>
             </ScrollView>
