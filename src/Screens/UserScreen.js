@@ -12,13 +12,17 @@ export default class UserScreen extends Component {
     };
   }
 
+  screenChange(){
+      this.props.onPressScreenChange('mainscreen')
+  }
+
   render() {
     return (
         <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#5c2d90'}}>
                     <View style={{borderWidth: 1, backgroundColor: 'white', width: '100%',
     marginBottom: 40}}>
             <Text style={{fontSize: 40, textAlign: 'center', paddingRight: 10, paddingBottom: 10}}>Hi, Sanket Shevkar</Text>
-            <TouchableOpacity style={{height: 50, borderRadius: 10, width: 100, backgroundColor: '#fdca7b', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', margin: 10}}>
+            <TouchableOpacity onPress={()=>this.screenChange()} style={{height: 50, borderRadius: 10, width: 100, backgroundColor: '#fdca7b', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', margin: 10}}>
                   <Text style={styles.photoPreviewUsePhotoText}>
                     Scan
                   </Text>

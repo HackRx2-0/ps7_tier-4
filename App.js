@@ -9,15 +9,35 @@ export default class App extends Component {
     super(props);
 
     this.state = {
+      currentScreen: 'userscreen'
     };
   }
 
+  onPressScreenChange(screen){
+    this.setState({currentScreen: screen});
+  }
+
   render() {
+
+    if(this.state.currentScreen === 'userscreen'){
       return (
         <View style={{flex: 1}}>
           <TopNavigator />
-        <UserScreen/>
+        <UserScreen onPressScreenChange={()=>this.onPressScreenChange()}/>
         </View>
-      );
+      );      
+    }else if(this.state.currentScreen === 'mainscreen'){
+      <View style={{flex: 1}}>
+          <TopNavigator onPressScreenChange={()=>this.onPressScreenChange()}/>
+        <MainScreen/>
+        </View>
+    }else{
+      return(
+        <View style={{flex: 1}}>
+          <TopNavigator onPressScreenChange={()=>this.onPressScreenChange()}/>
+        <MainScreen/>
+        </View>
+      )
+    }
     }
 }
