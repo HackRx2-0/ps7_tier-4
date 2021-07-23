@@ -79,6 +79,44 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule{
         
     }
 
+    @ReactMethod
+    public void imageSmoothening(String imageAsBase64, Callback errorCallback, Callback successCallback) {
+
+      Mat destination;
+      Mat srcOrig;
+      Mat kernel;
+      int kernelSize = 3;
+      
+      try {
+        
+        srcOrig = base64ToMat(imageAsBase64);
+        destination = new Mat(srcOrig.rows(), srcOrig.cols(), srcOrig.type());
+        kernel = new Mat(kernelSize, kernelSize, CvType.CV_32F) {
+        {
+          put(0, 0, -1);
+          put(0, 1 , -1);
+          put(0, 2 , -1);
+
+          put(1, 0, -1);
+          put(1, 1, 9);
+          put(1, 2, -1);
+
+          put(2, 0, -1);
+          put(2, 1, -1);
+          put(2, 2, -1);
+        }
+        };          
+        Imgproc.filter2D(srcOrig, destination, -1, kernel);
+
+        String encoded = matTobase64(destination);
+        successCallback.invoke(encoded);
+
+      } catch(Exception e) {
+        Log.d(TAG,e.toString());
+      }
+
+    }
+
 
     @ReactMethod 
     public void skewByAngle(String imageAsBase64,double angle, Callback errorCallback, Callback successCallback) throws ExecutionException, InterruptedException{
