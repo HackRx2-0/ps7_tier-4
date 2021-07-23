@@ -67,13 +67,13 @@ export default class MainScreen extends Component {
 
          <View style={styles.buttonStyleContainer} elevation={18}>
          <TouchableOpacity onPress={this._handlePressCrop} style={{flex: 1, height: 40, marginTop: 10 }}>
-    <Text style={{textAlign: "center"}}>My button</Text>
+    <Text style={{textAlign: "center", color: 'white', fontSize: 14, fontFamily: 'Maven Pro, sans-serif'}}>Enhance</Text>
 </TouchableOpacity>
 <TouchableOpacity style={{flex: 1, height: 40, marginTop: 10 }}>
-    <Text style={{textAlign: "center"}}>My button</Text>
+    <Text style={{textAlign: "center", color: 'white', fontSize: 14, fontFamily: 'Maven Pro, sans-serif'}}>Import</Text>
 </TouchableOpacity>
 <TouchableOpacity style={{flex: 1, height: 40, marginTop: 10 }}>
-    <Text style={{textAlign: "center"}}>My button</Text>
+    <Text style={{textAlign: "center", color: 'white', fontSize: 14, fontFamily: 'Maven Pro, sans-serif'}}>Docs</Text>
 </TouchableOpacity>
          </View>
 
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   buttonStyleContainer: {
     flexDirection: 'row',
-    backgroundColor: '#841584',
+    backgroundColor: '#5c2d90',
     shadowColor: "#000",
 shadowOffset: {
 	width: 0,
