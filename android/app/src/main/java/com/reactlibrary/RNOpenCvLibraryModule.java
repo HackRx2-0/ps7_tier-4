@@ -8,6 +8,64 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import java.util.logging.Logger;
+import org.opencv.android.Utils;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.core.TermCriteria;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.BiFunction;
+import java.util.logging.Logger;
+
+
+import com.facebook.react.bridge.Callback;
+
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import android.media.ExifInterface;
+
+import org.opencv.core.Core;
+import org.opencv.core.Rect;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.android.Utils;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Scalar;
+import org.opencv.core.TermCriteria;
+import org.opencv.imgproc.Imgproc;
+
+import android.os.AsyncTask;
+import android.util.Base64;
+import android.util.Log;
+import android.widget.Toast;
+import android.graphics.Matrix;
+
+import org.opencv.core.Size;
+import org.opencv.utils.Converters;
+
+import java.io.ByteArrayOutputStream;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
+import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Promise;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,20 +73,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.FileOutputStream;
 import org.opencv.android.Utils;
-import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.Core;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
-import java.nio.ByteBuffer;
+
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import org.opencv.imgcodecs.Imgcodecs;
-
-
 
 
 public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule {
@@ -99,5 +153,45 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule {
             errorCallback.invoke(e.getStackTrace().toString());
         }
     }
+
+    @ReactMethod 
+    public void skewByAngle(String imageAsBase64,double angle, Callback errorCallback, Callback successCallback) throws ExecutionException, InterruptedException{
+
+      Mat src = new Mat();
+      Mat srcOrig;
+
+      /*Slider value for angle parameter conversion
+      0 -> 0 deg
+      25 -> 90 deg
+      50 -> 180 deg
+      75 -> 270 deg
+      100 -> 0 / 360 deg
+      */
+      
+      try {
+        
+        srcOrig = base64ToMat(imageAsBase64);
+        
+        Point rotPoint = new Point(srcOrig.cols() / 2.0,
+        srcOrig.rows() / 2.0);
+
+        Mat rotMat = Imgproc.getRotationMatrix2D(
+        rotPoint, angle * 3.6, 1);
+
+        // Apply Affine Transformation
+        Imgproc.warpAffine(srcOrig, src, rotMat, srcOrig.size(),
+        Imgproc.WARP_INVERSE_MAP);
+
+        String encoded = matTobase64(src);
+        
+        successCallback.invoke(encoded);
+      
+      }catch(Exception e){
+        Log.d(TAG,e.toString());
+      }
+      
+    }
+
+
   }
 
