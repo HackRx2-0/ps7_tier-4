@@ -130,6 +130,10 @@ export default class CameraScreen extends Component {
     this.setState({currentPhotoAsBase64: this.photoAsBase64})
   }
 
+  proceedWithUpload() {
+    
+  }
+
   render() {
     const { source, content, resizeMode } = this.props;
 
