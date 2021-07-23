@@ -21,6 +21,8 @@ target 'example' do
   ]
   pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   post_install do |installer|
     ## Fix for XCode 12.5 beta
     find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
