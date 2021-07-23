@@ -8,7 +8,6 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  Dimensions,
 } from "react-native";
 import Toast, { DURATION } from "react-native-easy-toast";
 
@@ -21,29 +20,24 @@ export default class CameraScreen extends Component {
 
     this.onContrast = 2;
     this.onBrightness = 10;
-    this.angle = 75;
-    this.photoAsBase64 = {
-      content: this.props.content,
-      isPhotoPreview: false,
-      photoPath: this.props.source,
-    };
 
     this.addContrastandBrightnessMethod =
       this.addContrastandBrightnessMethod.bind(this);
     this.proceedWithContrastandBrightnessMethod =
       this.proceedWithContrastandBrightnessMethod.bind(this);
 
-    this.addSkew = this.addSkew.bind(this);
-    this.proceedWithSkew = this.proceedWithSkew.bind(this);
     this.state = {
       cameraPermission: false,
+      photoAsBase64: {
+        content: this.props.content,
+        isPhotoPreview: false,
+        photoPath: this.props.source,
+      },
       currentPhotoAsBase64: {
         content: this.props.content,
         isPhotoPreview: false,
         photoPath: this.props.source,
       },
-      screenWidth: Dimensions.get("window").width,
-      screenHeight: Dimensions.get("window").height,
     };
   }
   addContrastandBrightnessMethod = (content, onContrast, onBrightness) => {
@@ -69,50 +63,12 @@ export default class CameraScreen extends Component {
     });
   };
   proceedWithContrastandBrightnessMethod() {
-    const { content } = this.photoAsBase64;
+    const { content } = this.state.photoAsBase64;
     this.addContrastandBrightnessMethod(
       content,
       this.onContrast,
       this.onBrightness
     )
-      .then((blurryPhoto) => {
-        this.setState({
-          currentPhotoAsBase64: {
-            ...this.state.currentPhotoAsBase64,
-            content: blurryPhoto,
-          },
-        });
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  }
-
-  addSkew(content, angle) {
-    return new Promise((resolve, reject) => {
-      if (Platform.OS === "android") {
-        OpenCV.skewByAngle(
-          content,
-          angle,
-          (error) => {
-            // error handling
-            console.log("[Skew  FUNC ERR!]", error);
-          },
-          (s) => {
-            resolve(s);
-          }
-        );
-      } else {
-        OpenCV.skewByAngle(content, angle, (error, dataArray) => {
-          resolve(dataArray[0]);
-        });
-      }
-    });
-  }
-
-  proceedWithSkew() {
-    const { content } = this.photoAsBase64;
-    this.addSkew(content, this.angle)
       .then((blurryPhoto) => {
         this.setState({
           currentPhotoAsBase64: {
@@ -137,7 +93,6 @@ export default class CameraScreen extends Component {
           <Image
             resizeMode={resizeMode}
             ref={`image`}
-            resizeMethod={"scale"}
             source={{
               uri: `data:image/png;base64,${this.state.currentPhotoAsBase64.content}`,
             }}
@@ -160,12 +115,6 @@ export default class CameraScreen extends Component {
                   <Text style={styles.photoPreviewUsePhotoText}>
                     Brightness
                   </Text>
-                </TouchableOpacity>
-              </View>
-
-              <View>
-                <TouchableOpacity onPress={() => this.proceedWithSkew()}>
-                  <Text style={styles.photoPreviewUsePhotoText}>Skew Tilt</Text>
                 </TouchableOpacity>
               </View>
               <View>

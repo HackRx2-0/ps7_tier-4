@@ -99,6 +99,5 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule {
             errorCallback.invoke(e.getStackTrace().toString());
         }
     }
-
   }
 
