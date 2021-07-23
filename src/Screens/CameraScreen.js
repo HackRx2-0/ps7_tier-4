@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   AppRegistry,
   View,
@@ -8,7 +8,6 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  Dimensions,
 } from "react-native";
 import Toast, { DURATION } from "react-native-easy-toast";
 
@@ -19,81 +18,125 @@ export default class CameraScreen extends Component {
   constructor(props) {
     super(props);
 
+    this.onContrast = 2;
+    this.onBrightness = 10;
+
+    this.addContrastandBrightnessMethod =
+      this.addContrastandBrightnessMethod.bind(this);
+    this.proceedWithContrastandBrightnessMethod =
+      this.proceedWithContrastandBrightnessMethod.bind(this);
+
     this.state = {
       cameraPermission: false,
       photoAsBase64: {
-        content: "",
+        content: this.props.content,
         isPhotoPreview: false,
-        photoPath: "",
+        photoPath: this.props.source,
       },
       currentPhotoAsBase64: {
-        content: "",
+        content: this.props.content,
         isPhotoPreview: false,
-        photoPath: "",
+        photoPath: this.props.source,
       },
     };
   }
+  addContrastandBrightnessMethod = (content, onContrast, onBrightness) => {
+    return new Promise((resolve, reject) => {
+      if (Platform.OS === "android") {
+        OpenCV.brightnessOrContrast(
+          content,
+          onContrast,
+          onBrightness,
+          (error) => {
+            // error handling
+            console.log("[BrightnessORContrast  FUNC ERR!]", error);
+          },
+          (s) => {
+            resolve(s);
+          }
+        );
+      } else {
+        OpenCV.brightnessOrContrast(content, onBrival, (error, dataArray) => {
+          resolve(dataArray[0]);
+        });
+      }
+    });
+  };
+  proceedWithContrastandBrightnessMethod() {
+    const { content } = this.state.photoAsBase64;
+    this.addContrastandBrightnessMethod(
+      content,
+      this.onContrast,
+      this.onBrightness
+    )
+      .then((blurryPhoto) => {
+        this.setState({
+          currentPhotoAsBase64: {
+            ...this.state.currentPhotoAsBase64,
+            content: blurryPhoto,
+          },
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
 
   render() {
-    const { source, resizeMode, style, content } = this.props;
-    // console.log("Camera Screen 417", content);
-    return (
-      <View style={styles.container}>
-        <Toast ref="toast" position="center" />
-        {/** PREVIEW */}
-        <Image
-          resizeMode={resizeMode}
-          ref={`image`}
-          source={{
-            uri: `data:image/png;base64,${content}`,
-          }}
-          style={styles.imagePreview}
-        />
-        <View style={styles.usePhotoContainer}>
-          <ScrollView horizontal={true}>
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.photoPreviewRepeatPhotoText}>
-                  Retake photo
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.photoPreviewUsePhotoText}>Blur</Text>
-              </TouchableOpacity>
-            </View>
+    const { source, content, resizeMode } = this.props;
 
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.photoPreviewUsePhotoText}>Contrast</Text>
-              </TouchableOpacity>
-            </View>
+    if (this.state.currentPhotoAsBase64) {
+      return (
+        <View style={styles.container}>
+          <Toast ref="toast" position="center" />
+          {/** PREVIEW */}
+          <Image
+            resizeMode={resizeMode}
+            ref={`image`}
+            source={{
+              uri: `data:image/png;base64,${this.state.currentPhotoAsBase64.content}`,
+            }}
+            style={styles.imagePreview}
+          />
+          <View style={styles.usePhotoContainer}>
+            <ScrollView horizontal={true}>
+              <View>
+                <TouchableOpacity
+                  onPress={() => this.proceedWithContrastandBrightnessMethod()}
+                >
+                  <Text style={styles.photoPreviewUsePhotoText}>Contrast</Text>
+                </TouchableOpacity>
+              </View>
 
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.photoPreviewUsePhotoText}>Brightness</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.photoPreviewUsePhotoText}>Upload</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.photoPreviewUsePhotoText}>Undo</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.photoPreviewUsePhotoText}>Redo</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
+              <View>
+                <TouchableOpacity
+                  onPress={() => this.proceedWithContrastandBrightnessMethod()}
+                >
+                  <Text style={styles.photoPreviewUsePhotoText}>
+                    Brightness
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.photoPreviewUsePhotoText}>Upload</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.photoPreviewUsePhotoText}>Undo</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.photoPreviewUsePhotoText}>Redo</Text>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
   }
 }
 
