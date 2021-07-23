@@ -21,6 +21,11 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule{
     Callback successCallback){
 
     }
+
+     @ReactMethod
+    public void rotate90Degrees(String imageAsBase64, Callback errorCallback, Callback successCallback){
+        
+    }
   
 }
 
