@@ -51,11 +51,49 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule{
     public void addContrastMethod(String imageAsBase64, int alpha ,Callback errorCallback,
     Callback successCallback){
 
+
+
     }
 
      @ReactMethod
     public void rotate90Degrees(String imageAsBase64, Callback errorCallback, Callback successCallback){
         
+
+    }
+
+
+    @ReactMethod
+    public void skewByAngle(String imageAsBase64,double angle, Callback errorCallback, Callback successCallback) throws ExecutionException, InterruptedException{
+
+      Mat src = new Mat();
+      Mat srcOrig;
+
+      
+      try {
+        
+        srcOrig = base64ToMat(imageAsBase64);
+        
+        Point rotPoint = new Point(srcOrig.cols() / 2.0,
+        srcOrig.rows() / 2.0);
+
+
+        Mat rotMat = Imgproc.getRotationMatrix2D(
+        rotPoint, angle * 1.8, 1);
+
+    
+        Imgproc.warpAffine(srcOrig, src, rotMat, srcOrig.size(),
+        Imgproc.WARP_INVERSE_MAP);
+
+       
+
+        String encoded = matTobase64(src);
+        
+        successCallback.invoke(encoded);
+      
+      }catch(Exception e){
+        Log.d(TAG,e.toString());
+      }
+      
     }
 
 
