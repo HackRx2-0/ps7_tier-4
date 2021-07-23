@@ -111,7 +111,7 @@ export default class CameraScreen extends Component {
   }
 
   proceedWithSkew() {
-    const { content } = this.photoAsBase64;
+    const { content } = this.state.currentPhotoAsBase64;
     this.addSkew(content, this.angle)
       .then((blurryPhoto) => {
         this.setState({
@@ -124,6 +124,10 @@ export default class CameraScreen extends Component {
       .catch((err) => {
         console.log("err", err);
       });
+  }
+
+  proceedWithUndo() {
+    this.setState({currentPhotoAsBase64: this.photoAsBase64})
   }
 
   render() {
@@ -169,12 +173,12 @@ export default class CameraScreen extends Component {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.proceedWithUndo()}>
                   <Text style={styles.photoPreviewUsePhotoText}>Undo</Text>
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.proceedWithUpload()}>
                   <Text style={styles.photoPreviewUsePhotoText}>Upload</Text>
                 </TouchableOpacity>
               </View>
