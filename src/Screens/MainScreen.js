@@ -85,6 +85,7 @@ export default class MainScreen extends Component {
     <Button
              title={"Scan"}
               color="#841584"
+              onPress={this._handlePressCrop}
             />
     </View>
     <View style={{flex: 1, borderWidth: 1}}>
