@@ -74,10 +74,37 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule{
       }
   }
 
-     @ReactMethod
-    public void rotate90Degrees(String imageAsBase64, Callback errorCallback, Callback successCallback) {
-        
-    }
+  @ReactMethod
+  public void rotate90Degrees(String imageAsBase64,int numberRotations, Callback errorCallback, Callback successCallback) throws ExecutionException, InterruptedException {
+  
+    Mat srcOrig;
+    numberRotations = numberRotations %4;
+    try {
+
+      srcOrig = base64ToMat(imageAsBase64);
+      
+      if(numberRotations == 1)
+        Core.rotate(srcOrig, srcOrig, Core.ROTATE_90_CLOCKWISE);
+      
+      if(numberRotations == 2)
+        Core.rotate(srcOrig, srcOrig, Core.ROTATE_180);
+      
+      if(numberRotations == 3)
+        Core.rotate(srcOrig, srcOrig, Core.ROTATE_90_COUNTERCLOCKWISE);
+      
+      
+
+      String encoded = matTobase64(srcOrig);
+
+      successCallback.invoke(encoded);
+     
+      } catch (Exception e) {
+
+          Log.e(TAG," STACK TRACE :" + e.toString());
+
+      }
+
+  }
 
     @ReactMethod
     public void imageSmoothening(String imageAsBase64, Callback errorCallback, Callback successCallback) {
