@@ -22,6 +22,11 @@ export default class CameraScreen extends Component {
     this.onContrast = 2;
     this.onBrightness = 10;
     this.angle = 75;
+    this.photoAsBase64 = {
+      content: this.props.content,
+      isPhotoPreview: false,
+      photoPath: this.props.source,
+    };
 
     this.addContrastandBrightnessMethod =
       this.addContrastandBrightnessMethod.bind(this);
@@ -32,11 +37,6 @@ export default class CameraScreen extends Component {
     this.proceedWithSkew = this.proceedWithSkew.bind(this);
     this.state = {
       cameraPermission: false,
-      photoAsBase64: {
-        content: this.props.content,
-        isPhotoPreview: false,
-        photoPath: this.props.source,
-      },
       currentPhotoAsBase64: {
         content: this.props.content,
         isPhotoPreview: false,
@@ -69,7 +69,7 @@ export default class CameraScreen extends Component {
     });
   };
   proceedWithContrastandBrightnessMethod() {
-    const { content } = this.state.photoAsBase64;
+    const { content } = this.photoAsBase64;
     this.addContrastandBrightnessMethod(
       content,
       this.onContrast,
@@ -111,7 +111,7 @@ export default class CameraScreen extends Component {
   }
 
   proceedWithSkew() {
-    const { content } = this.state.photoAsBase64;
+    const { content } = this.photoAsBase64;
     this.addSkew(content, this.angle)
       .then((blurryPhoto) => {
         this.setState({
