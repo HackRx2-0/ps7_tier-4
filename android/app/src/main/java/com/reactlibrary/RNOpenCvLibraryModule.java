@@ -47,13 +47,32 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule{
   }
 
 
-    @ReactMethod
-    public void addContrastMethod(String imageAsBase64, int alpha ,Callback errorCallback,
-    Callback successCallback){
+  @ReactMethod
+  public void brightnessOrContrast(String imageAsBase64, int alpha, int beta, Callback errorCallback, Callback successCallback) {
 
+    Mat src = new Mat();
+    Mat dst;
+    
+    /* Conditional transfer of options to adjust brightness or 
+       contrast will be handeled in the front end
+    */
+    
+    try {
+      
+      src = base64ToMat(imageAsBase64);
+      dst = new Mat(src.rows(), src.cols(), src.type());
 
+      src.convertTo(dst, -1, alpha, beta);
 
-    }
+      String encoded = matTobase64(dst);
+
+      successCallback.invoke(encoded);
+
+      } catch(Exception e) {
+          Log.e(TAG, "error " + e.getStackTrace());
+          errorCallback.invoke(e.getStackTrace().toString());
+      }
+  }
 
      @ReactMethod
     public void rotate90Degrees(String imageAsBase64, Callback errorCallback, Callback successCallback) {
@@ -98,6 +117,9 @@ public class RNOpenCvLibraryModule extends ReactContextBaseJavaModule{
       }
       
     }
+
+
+
 
 
   
