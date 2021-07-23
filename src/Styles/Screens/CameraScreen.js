@@ -63,12 +63,11 @@ export default StyleSheet.create({
     right: 0,
     width: "100%",
     height: 55,
-    backgroundColor: "#841584",
+    backgroundColor: "#5c2d90",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-evenly",
-    padding: 10,
-    margin: 2,
+    padding: 10
   },
   photoPreviewUsePhotoText: {
     color: "white",
