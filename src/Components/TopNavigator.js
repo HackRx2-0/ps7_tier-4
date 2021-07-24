@@ -3,7 +3,7 @@ import React from 'react';
 import {AppRegistry, View, Text, ProgressViewIOSComponent, TouchableOpacity} from 'react-native';
 export default function TopNavigator (props) {
     const screenChange = () => {
-        props.onPressScreenChange('userscreen');
+        props.onPressScreenChange(0);
     }
       return (
           <TouchableOpacity onPress={screenChange} style={{flexDirection: 'row'}}>
