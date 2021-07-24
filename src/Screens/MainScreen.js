@@ -67,7 +67,7 @@ export default class MainScreen extends Component {
 
          <View style={styles.buttonStyleContainer} elevation={18}>
          <TouchableOpacity onPress={this._handlePressCrop} style={{flex: 1, height: 40, marginTop: 10 }}>
-    <Text style={{textAlign: "center", color: 'white', fontSize: 17, fontFamily: 'Maven Pro, sans-serif'}}>Enhance</Text>
+    <Text style={{textAlign: "center", color: 'white', fontSize: 17, fontFamily: 'Maven Pro, sans-serif'}}>Edit</Text>
 </TouchableOpacity>
 <TouchableOpacity style={{flex: 1, height: 40, marginTop: 10 }}>
     <Text style={{textAlign: "center", color: 'white', fontSize: 17, fontFamily: 'Maven Pro, sans-serif'}}>Import</Text>

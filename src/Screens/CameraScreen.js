@@ -110,6 +110,28 @@ export default class CameraScreen extends Component {
     });
   }
 
+  enhance(content) {
+    return new Promise((resolve, reject) => {
+      if (Platform.OS === "android") {
+        OpenCV.imageImprover(
+          content,
+          (error) => {
+            // error handling
+            console.log("[imgImprov  FUNC ERR!]", error);
+          },
+          (s) => {
+            resolve(s);
+          }
+        );
+      } else {
+        OpenCV.imageImprover(content, (error, dataArray) => {
+          resolve(dataArray[0]);
+        });
+      }
+    });
+
+  }
+
   proceedWithSkew() {
     const { content } = this.state.currentPhotoAsBase64;
     this.addSkew(content, this.angle)
@@ -131,7 +153,23 @@ export default class CameraScreen extends Component {
   }
 
   proceedWithUpload() {
-    
+
+  }
+
+  proceesWithEnhance() {
+    const { content } = this.state.currentPhotoAsBase64;
+    this.enhance(content)
+      .then((blurryPhoto) => {
+        this.setState({
+          currentPhotoAsBase64: {
+            ...this.state.currentPhotoAsBase64,
+            content: blurryPhoto,
+          },
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
   }
 
   render() {
@@ -158,6 +196,11 @@ export default class CameraScreen extends Component {
                   onPress={() => this.proceedWithContrastandBrightnessMethod()}
                 >
                   <Text style={styles.photoPreviewUsePhotoText}>Contrast</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity onPress={() => this.proceesWithEnhance()}>
+                  <Text style={styles.photoPreviewUsePhotoText}>Enhance</Text>
                 </TouchableOpacity>
               </View>
 
