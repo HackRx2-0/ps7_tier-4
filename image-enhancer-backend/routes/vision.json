@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hackrx-tier4",
+  "private_key_id": "4ce96894225646debd245002825cff70a6f4dec3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDW0CUZfDC8v0Eh\n1CGm4tYw0sAnZxXFaD7N/wnheaD+3SZ4Vx4rjETh1FqwX9lwAAvv4tI4s4DBpv/h\nQvT3BjEursD/lnVv1Ifm6VcuZPhctxbTivg32zGRptnEvfu37000Arq5F8eAcG4g\nmTixZ6GNtZotVQhPr5BLbyafjrAcPmHqijPxmjpYVwoxHFBf6Sxcx2dZ5ixVSkCE\nfjqGrQGNnTApP+cbp8FnTxuxqWstKQ/84/tGS5CMRCeykf478uMPX3OLGSyQt7C8\n4cBrQW1lgAipt3PnikbQcxl8tNV2Y/JUgUYM3mr44ZKOVRQ9SxPf3/dbSPTV39a9\n5ZM1e6qFAgMBAAECggEADerSXIJVTgU+HQj3XS6ZHfSpimP9XxrP5ty9MSSGL7z4\nPxe11rBxzgfKEF9FYSI/o70YTaAjmWhOb7O81zxJd3LPAkAnP6WPYICBq3nTNX6P\nNgls54GGBp++wCZm5pXUdKgwnMlTnZirKeWDbMsABoRbhtBZh4AiYyDCadf+xPWP\nUS3PsExZKZ6AVqtAXo0ivViNXymyJVCRHQhiYGCaUFfcJQhDqVJFc/sPq/ztsgZj\n0qb1vFOZ0ydU27oed+Cmue/X2W/IkPbfZSnj2eoLCxq66O6Q7syDVTKJartg169w\nBSi7ntWKRxPams2TX/Xggojkf7UcOP06yZGLnoABQQKBgQDwWDROGRDyiGKycidE\nfzQW4symLjpZuKAjR2+iBdEzXlpPR4DXcRk3GAHqS/TakSd/Ls9LirXsoQFPbcd/\n/MjW4hR+95G8GsvhJXtRPxfKxML4TZnZDEozm2BgeN45cV8TtaNl70B2SoatFGr0\nc0ggCPWAvSp5nNylXuoQvWzlSQKBgQDkzjKijaa8TGrhJCbn1cOYw3U5h9qHyfYO\nbkkdV1GTCpfcXc19TVlvxB3TCYr7go7HXePydXHRVW0MavUMLKW6/QZbHb2U1Pmo\nCaLoAnJpCkNkyf/ULBM1tjn+/3MIXE4U98/2Fo2cIpcWRe6TN05KCEVSSSGACkJF\nlL4ua0xnXQKBgC6GBGnxtDQebmx4aF17+gtMD61DWYwwjt8FXviQA7Tb2MNr5ebO\nP8FIZmaCGX2Nh4W4++t1iE2rxOMpLur5da8SyEDjj1RII5sLdFl/yw03FT6XVuaK\n2How43EJNIsOBQd9q4l5zJKZToSGZUW4YwfAdDVdaLFtydBBFTH0WPXxAoGAZ/Vs\nOkFkHbAW676yUqnkmjdMvtwEJahUvQ/M9qDi9o1cnIqeQC1x0n9oEagHVulmGB2H\n4XUNRtCqoHbEakiq8H/gcGvd5I6z9G6UbxgVhbZdEqFZNLzl6YSnaz4DtSvDanGC\nMszigKuSvFL/6DG7x5VkcdO6feOrYtQHaS3lZB0CgYEAsAh1f8xnuASOBgHmq5er\n1IowcKweUBl4o+RCnXY23ypAaH44EqbsYI5DGpAUXLR7rGsGcJ3+9cXOjWmsvDXn\n+SBweY9vSE00LIm4nBt9Jxl1Hj7M5EA+A/nAcO6Od3I/dJ3mbxUMiJ+DrpmCRDoN\nmfanxZFYa7HQO/Smb+CwxDQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "nishanth@hackrx-tier4.iam.gserviceaccount.com",
+  "client_id": "115173425684447325969",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nishanth%40hackrx-tier4.iam.gserviceaccount.com"
+}
