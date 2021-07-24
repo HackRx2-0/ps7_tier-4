@@ -66,11 +66,11 @@ npx react-native run-android
 
 ---
 ### Algorithms Used
-[Skew and Tilt](https://gist.github.com/nishanthbhat07/ee06c232c0f1d052b382315afaf37802)
-[Contrast](https://gist.github.com/nishanthbhat07/8910cfebd9f5d7ca3c817803f57ee3a3)
-[Crop](https://gist.github.com/nishanthbhat07/41a528c274ec69d511617fd0ac4025b7)
-[Rotation](https://gist.github.com/nishanthbhat07/9d87ab7a4bb779b7fb8e4ffdd0b6d5b4)
-[Border detection and correction](https://gist.github.com/nishanthbhat07/4ce3206f784734282ac5e817dd6366af)
+- [Skew and Tilt](https://gist.github.com/nishanthbhat07/ee06c232c0f1d052b382315afaf37802)
+- [Contrast](https://gist.github.com/nishanthbhat07/8910cfebd9f5d7ca3c817803f57ee3a3)
+- [Crop](https://gist.github.com/nishanthbhat07/41a528c274ec69d511617fd0ac4025b7)
+- [Rotation](https://gist.github.com/nishanthbhat07/9d87ab7a4bb779b7fb8e4ffdd0b6d5b4)
+- [Border detection and correction](https://gist.github.com/nishanthbhat07/4ce3206f784734282ac5e817dd6366af)
 
 ---
 ### Demo
