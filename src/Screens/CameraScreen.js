@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Component, useState } from "react";
+import React, { Component, componentDidMount } from "react";
 import {
   AppRegistry,
   View,
@@ -46,6 +46,26 @@ export default class CameraScreen extends Component {
       screenHeight: Dimensions.get("window").height,
     };
   }
+
+  componentDidMount(){
+
+      setTimeout(() => {
+        this.enhance(this.props.content)
+      .then((blurryPhoto) => {
+        this.setState({
+          currentPhotoAsBase64: {
+            ...this.state.currentPhotoAsBase64,
+            content: blurryPhoto,
+          },
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+        }, 500);
+        
+  }
+
   addContrastandBrightnessMethod = (content, onContrast, onBrightness) => {
     return new Promise((resolve, reject) => {
       if (Platform.OS === "android") {
@@ -153,7 +173,18 @@ export default class CameraScreen extends Component {
   }
 
   proceedWithUpload() {
-
+      const {content} = this.state.currentPhotoAsBase64;
+      fetch('http://65.0.102.229:8000/api/image/upload', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({content: `data:image/png;base64,${content}`}),
+      })
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(e => console.log(e));
+      // console.log(res.json());
   }
 
   proceesWithEnhance() {
