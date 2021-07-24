@@ -74,6 +74,10 @@ npx react-native run-android
 
 ---
 ### System Architecture
+![Demo](https://hackrx.s3.ap-south-1.amazonaws.com/WhatsApp+Video+2021-07-24+at+08.05.20.mp4)
+
+---
+### System Architecture
 ![System Architecture](https://hackrx.s3.ap-south-1.amazonaws.com/Archi.png)
 
 ---
