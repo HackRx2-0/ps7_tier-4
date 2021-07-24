@@ -73,8 +73,8 @@ npx react-native run-android
 [Border detection and correction](https://gist.github.com/nishanthbhat07/4ce3206f784734282ac5e817dd6366af)
 
 ---
-### System Architecture
-![Demo](https://hackrx.s3.ap-south-1.amazonaws.com/WhatsApp+Video+2021-07-24+at+08.05.20.mp4)
+### Demo
+![Demo](https://hackrx.s3.ap-south-1.amazonaws.com/WhatsApp+Video+2021-07-24+at+08.26.38.gif)
 
 ---
 ### System Architecture
