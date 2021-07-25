@@ -74,7 +74,7 @@ npx react-native run-android
 
 ---
 ### Demo
-![Demo](https://hackrx.s3.ap-south-1.amazonaws.com/WhatsApp+Video+2021-07-24+at+08.26.38.gif)
+![Demo](https://hackrx.s3.ap-south-1.amazonaws.com/final_60fd69be1446c60103fc2acb_467348.gif)
 
 ---
 ### System Architecture
